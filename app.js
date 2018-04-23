@@ -5,7 +5,20 @@ var budgetController = (function(){
     }
     return {
         publicTest : function(b){
-            console.log(add(b));
+                    return add(b);
         }
     }
 })();
+var UIController = (function(){
+    //UI controller
+})();
+
+var controller = (function(budgetCtrl,UICtrl){
+    // var x = budgetCtrl.publicTest(5);
+    return {
+        publicController : function(x){
+            console.log(budgetCtrl.publicTest(x));
+        }
+    }
+
+})(budgetController,UIController);

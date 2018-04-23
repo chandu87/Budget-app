@@ -7,7 +7,12 @@ var UIController = (function(){
 })();
 
 var controller = (function(budgetCtrl,UICtrl){
-    return {
-    }
-
+    document.querySelector('.add__btn').addEventListener('click',function(){
+        // 1. add field input data
+        // 2. add item to budget controller
+        //3. add item to UI
+        //4. caluclate budget
+        //5. update UI
+        
+    });
 })(budgetController,UIController);

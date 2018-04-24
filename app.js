@@ -7,12 +7,20 @@ var UIController = (function(){
 })();
 
 var controller = (function(budgetCtrl,UICtrl){
-    document.querySelector('.add__btn').addEventListener('click',function(){
+
+    ctrlAddItem = function(event){
         // 1. add field input data
         // 2. add item to budget controller
         //3. add item to UI
         //4. caluclate budget
         //5. update UI
-        
+
+    };
+    document.querySelector('.add__btn').addEventListener('click',ctrlAddItem);
+
+    document.addEventListener("keypress",function(event){
+        if(event.keyCode === 97 || event.which === 97){
+                ctrlAddItem();
+        }
     });
 })(budgetController,UIController);

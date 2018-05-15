@@ -58,6 +58,14 @@ var UIController = (function() {
         value: document.querySelector(DOMStrings.inputValue).value
       };
     },
+    addListItem: function(obj, type) {
+      //Create HTML text with place holder texts
+
+      //Replace place holder with some actual data
+
+      // Insert the HTML into DOM
+      
+    },
     getDOMStrings: function() {
       return DOMStrings;
     }

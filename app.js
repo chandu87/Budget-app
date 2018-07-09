@@ -60,7 +60,7 @@ var UIController = (function() {
       };
     },
     addListItem: function(obj, type) {
-      let html;
+      let html,element;
       //Create HTML text with place holder texts
       if (type == "inc") {
         element = DOMStrings.incomeContainer;
@@ -77,6 +77,12 @@ var UIController = (function() {
       newHtml = newHtml.replace('%value%', obj.value);
       // Insert the HTML into DOM
       document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+    },
+    clearInputFields: function(){
+      let fields = document.querySelectorAll(DOMStrings.inputDescription+','+DOMStrings.inputValue);
+      fieldsArray = Array.prototype.slice.call(fields);
+      fieldsArray.forEach(element => { element.value = ""; });
+      fieldsArray[0].focus();
     },
     getDOMStrings: function() {
       return DOMStrings;
@@ -110,6 +116,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     );
     //3. add item to UI
     UICtrl.addListItem(newItem, inputValues.type);
+    UICtrl.clearInputFields();
     //4. caluclate budget
     //5. update UI
   };

@@ -139,6 +139,12 @@ var UIController = (function() {
     return sign + ' ' + int + '.' + dec; 
 
   };
+  function nodeListForEach(list, callback) {
+    for (let i = 0; i < list.length; i++) {
+      callback(list[i], i);
+    }
+  }
+
   return {
     getInput: function() {
       return {
@@ -200,11 +206,6 @@ var UIController = (function() {
       var fields = document.querySelectorAll(
         DOMStrings.expensesPercentageLabel
       );
-      function nodeListForEach(list, callback) {
-        for (let i = 0; i < list.length; i++) {
-          callback(list[i], i);
-        }
-      }
       nodeListForEach(fields, function(element, index) {
         element.textContent = percentages[index].toFixed(1) + "%";
       });
@@ -216,6 +217,14 @@ var UIController = (function() {
       year = dateToday.getFullYear();
       month = dateToday.getMonth();
       document.querySelector(DOMStrings.dateLabel).textContent = monthNames[month] + ' '+ year;
+    },
+    changeType: function(){
+      let fields;
+      fields = document.querySelectorAll(DOMStrings.inputType + ',' + DOMStrings.inputDescription + ',' + DOMStrings.inputValue);
+      nodeListForEach(fields, function(current){
+        current.classList.toggle("red-focus");
+      });
+      document.querySelector(DOMStrings.inputButton).classList.toggle('red');
     },
     getDOMStrings: function() {
       return DOMStrings;
@@ -238,9 +247,7 @@ var controller = (function(budgetCtrl, UICtrl) {
     document
       .querySelector(DOMStrs.containerMain)
       .addEventListener("click", ctrlDeleteItem);
-            //7. display year
-            UICtrl.displayMonth();
-
+   document.querySelector(DOMStrs.inputType).addEventListener('change', UICtrl.changeType); 
   };
   let updateBudget = function() {
     //1. caluclate budget
@@ -323,6 +330,9 @@ var controller = (function(budgetCtrl, UICtrl) {
         percentage: -1
       });
       setupEventListeners();
+      //. display year
+      UICtrl.displayMonth();
+
     }
   };
 })(budgetController, UIController);
